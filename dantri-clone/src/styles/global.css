@@ -1,0 +1,109 @@
+:root{
+    /*Màu*/
+    /*Brand*/
+    --color-primary: #07569b;
+    --color-primary-dark: #064477;
+    --color-primary-light: #eaf3fa;
+    /*Text*/
+    --color-text-primary: #222222;
+    --color-text-secondary: #666666;
+    --color-text-muted: #999999;
+    /*Background&Border*/
+    --color-background: #ffffff;
+    --color-surface: #f7f8fa;
+    --color-border: #e5e5e5;
+    /* Typography */
+    --font-family-base: Arial, Helvetica, sans-serif;
+    --font-size-base: 16px;
+    --line-height-base: 1.5;
+    /* Layout */
+    --container-width: 1200px;
+    --page-gutter: 16px;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html{
+    min-width: 320px;
+    scroll-behavior: smooth;
+}
+
+body{
+    margin: 0;
+    min-width: 320px;
+    min-height: 100vh;
+    font-family: var(--font-family-base);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-base);
+    color: var(--color-text-primary);
+    background-color: var(--color-background);
+}
+
+#root{
+    min-height: 100vh;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+    max-width: 100%;
+}
+
+button,
+input,
+textarea,
+select {
+    font: inherit;
+}
+
+button:not(:disabled) {
+    cursor: pointer;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+ul,
+ol {
+    margin: 0;
+    padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    margin: 0;
+}
+
+/*Htro dùng phím*/
+:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+/*P.Ndung*/
+.container {
+    width: 100%;
+    max-width: var(--container-width);
+    margin-inline: auto;
+    padding-inline: var(--page-gutter);
+}
+
+@media (max-width: 576px) {
+    :root {
+        --page-gutter: 12px;
+    }
+}
