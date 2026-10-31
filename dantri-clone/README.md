@@ -38,7 +38,7 @@
 
 ## 2. Môi trường phát triển
 
-Thông tin môi trường của nhóm trưởng khi khởi tạo dự án:
+Thông tin môi trường của nhóm trưởng khi khởi tạo dự git pull origin án:
 
 | Thành phần | Phiên bản / ghi chú |
 |---|---|
