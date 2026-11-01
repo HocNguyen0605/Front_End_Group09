@@ -1,24 +1,41 @@
 import { Routes, Route } from "react-router-dom";
-
-import MainLayout from "../layouts/MainLayout";
-import HomePage from "../pages/Home/HomePage";
-import CategoryPage from "../pages/Category/CategoryPage";
-import ArticleDetailPage from "../pages/ArticleDetail/ArticleDetailPage";
+import MainLayout from "../components/layout/MainLayout.jsx";
+import Home from "../pages/Home/index.jsx";
+import Category from "../pages/Category/index.jsx";
+import ArticleDetail from "../pages/ArticleDetail/index.jsx";
+import Search from "../pages/Search/index.jsx";
+import Saved from "../pages/Saved/index.jsx";
+import NotFound from "../pages/NotFound/index.jsx";
 
 function AppRoutes() {
   return (
     <Routes>
       <Route element={<MainLayout />}>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<Home />} />
 
         <Route
           path="/category/:slug"
-          element={<CategoryPage />}
+          element={<Category />}
         />
 
         <Route
           path="/article/:id"
-          element={<ArticleDetailPage />}
+          element={<ArticleDetail />}
+        />
+
+        <Route
+          path = "search"
+          element={<Search />}
+        />
+
+        <Route
+          path = "saved"
+          element={<Saved />}
+        />
+
+        <Route
+          path = "*"
+          element={<NotFound />}
         />
       </Route>
     </Routes>

@@ -1,5 +1,7 @@
 :root{
     /*Màu*/
+    /*Logo*/
+    --color-brand: #007b63;
     /*Brand*/
     --color-primary: #07569b;
     --color-primary-dark: #064477;
