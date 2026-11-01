@@ -13,8 +13,11 @@ export function useLocalStorage(key, initialValue) {
     useEffect(() => {
         try {
             localStorage.setItem(key, JSON.stringify(value));
-        } catch {
-        }
+        } catch (error) {
+            console.warn(
+                `Không thể lưu dữ liệu vào localStorage với key: ${key}`,
+                error
+            );}
     }, [key, value]);
 
     return [value, setValue];
