@@ -41,7 +41,7 @@
     padding-block: 20px;
 }
 .logo {
-    color: #007b63;
+    color: var(--color-brand);
     font-size: 36px;
     font-weight: 900;
     letter-spacing: -2px;

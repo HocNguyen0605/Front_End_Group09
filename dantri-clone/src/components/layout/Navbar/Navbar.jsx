@@ -11,7 +11,7 @@ function Navbar() {
                     {CATEGORIES.map((category) => (
                         <li key={category.slug} className={styles.item}>
                             <NavLink
-                                to={`/category/${category.slug}`}
+                                to={category.slug === "trang-chu" ? "/" : `/category/${category.slug}`}
                                 className={({ isActive }) => `${styles.link} ${isActive ? styles.active : ""}`}>
                                 {category.name}
                             </NavLink>
