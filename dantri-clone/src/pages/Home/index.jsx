@@ -1,8 +1,14 @@
+import ArticleCard from "../../components/article/ArticleCard";
+import { MOCK_ARTICLES } from "../../data/mockArticles";
+
 function Home(){
   return(
       <section className="container">
         <h1>Trang chủ</h1>
-        <p>Đây là khu vực nội dung trang chủ báo Dân trí.</p>
+          <ArticleCard
+              article={MOCK_ARTICLES[0]}
+              variant="medium"
+          />
       </section>
   );
 }
