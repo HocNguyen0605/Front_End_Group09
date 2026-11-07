@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { fetchArticles } from "../../services/rssService";
+import ArticleCard from "../../components/article/ArticleCard";
 import { CATEGORIES } from "../../config/categories";
 
 function HomePage() {
@@ -34,31 +35,15 @@ function HomePage() {
   }
 
   return (
-    <div>
-      <h1>Tin tức mới nhất</h1>
+      <div>
+        <h1>Tin tức mới nhất</h1>
 
-      <p>Tổng số bài viết: {articles.length}</p>
+        <p>Tổng số bài viết: {articles.length}</p>
 
-      {articles.map((article) => (
-        <div key={article.id}>
-          <h2>{article.title}</h2>
-          <p>{article.description}</p>
-
-          {article.imageUrl && (
-            <img
-              src={article.imageUrl}
-              alt={article.title}
-              width="200"
-            />
-          )}
-
-          <p>
-            Chuyên mục: {article.feedCategory}
-          </p>
-        </div>
-      ))}
-    </div>
+        {articles.map((article) => (
+              <ArticleCard key={article.id} article={article} />
+          ))}
+      </div>
   );
 }
-
 export default HomePage;

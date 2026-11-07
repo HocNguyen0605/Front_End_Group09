@@ -7,7 +7,7 @@ function MainLayout() {
         Header Dân Trí
       </header>
 
-      <main>
+        <main className="container">
         <Outlet />
       </main>
 
