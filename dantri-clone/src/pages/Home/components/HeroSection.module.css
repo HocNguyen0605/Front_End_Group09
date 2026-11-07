@@ -1,0 +1,18 @@
+.hero {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 24px;
+    margin-top: 24px;
+}
+
+.side {
+    display: grid;
+    gap: 16px;
+    align-content: start;
+}
+
+@media (max-width: 768px) {
+    .hero {
+        grid-template-columns: 1fr;
+    }
+}

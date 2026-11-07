@@ -1,0 +1,29 @@
+.card { display: flex; flex-direction: column; gap: 8px; }
+
+.thumb { display: block; overflow: hidden; }
+.thumb img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+
+.title { font-size: 1.125rem; line-height: 1.35; }
+.title a:hover { color: var(--color-primary); }
+
+.desc {
+    color: var(--color-text-secondary);
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.meta { color: var(--color-text-muted); font-size: 0.875rem; }
+
+.large .title { font-size: 1.75rem; }
+.small .title { font-size: 1rem; }
+
+.horizontal { flex-direction: row; gap: 16px; }
+.horizontal .thumb { flex: 0 0 240px; }
+.horizontal .body { min-width: 0; }
+
+@media (max-width: 576px) {
+    .horizontal .thumb { flex-basis: 120px; }
+}
