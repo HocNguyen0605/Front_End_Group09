@@ -109,3 +109,11 @@ p {
         --page-gutter: 12px;
     }
 }
+.section-title {
+    margin: 24px 0 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--color-primary);
+    font-size: 1.25rem;
+    text-transform: uppercase;
+    color: var(--color-primary);
+}

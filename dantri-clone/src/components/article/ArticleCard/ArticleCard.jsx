@@ -1,58 +1,32 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import { formatDate } from "../../../utils/formatDate.js";
+import { timeAgo } from "../../../utils/formatDate";
 import styles from "./ArticleCard.module.css";
 
-const VALID_VARIANTS = [
-    "large",
-    "medium",
-    "small",
-    "horizontal",
-];
+function ArticleCard({ article, variant = "horizontal" }) {
+    const { title, description, imageUrl, sourceUrl, publishedAt } = article;
 
-function ArticleCard({ article, variant = "medium"}){
-    const [imageError, setImageError] = useState(false);
-    if(!article || !article.id || !article.title){
-        return null;
-    }
-    const cardVariant = VALID_VARIANTS.includes(variant)? variant: "medium";
-    const hasImage = article.imageUrl && !imageError;
-    const authors = Array.isArray(article.authors)? article.authors.join(", "): "";
-    const publishedDate = formatDate(article.publishedAt);
-    return(
-        <article className={styles.card} data-variant = {cardVariant}>
-            <Link to={`/article/${encodeURIComponent(article.id)}`} className = {styles.link}>
-                <div className={styles.imageWrapper}>
-                    {hasImage ? (
-                        <img src={article.imageUrl} alt={article.title} className={styles.image} onError = {() => setImageError(true)}/>
-                    ) : (
-                        <div className={styles.imagePlaceholder} aria-label = "Không có hình ảnh">Không có hình ảnh</div>
-                    )}
-                </div>
+    return (
+        <article className={`${styles.card} ${styles[variant]}`}>
+            {imageUrl && (
+                <a href={sourceUrl} target="_blank" rel="noreferrer" className={styles.thumb}>
+                    <img src={imageUrl} alt={title} loading="lazy" />
+                </a>
+            )}
 
-                <div className={ styles.content}>
-                    {article.feedCategory &&(
-                        <span className={styles.category}>{article.feedCategory}</span>
-                    )}
-                    <h3 className={styles.title}>{article.title}</h3>
-                    {article.description && (
-                        <p className={styles.description}>
-                            {article.description}
-                        </p>
-                    )}
-                    <div className={styles.meta}>
-                        {authors && (
-                            <span className={styles.author}>{authors}</span>
-                        )}
-                        {publishedDate && (
-                            <time className={styles.date}>{publishedDate}</time>
-                        )}
-                    </div>
-                </div>
-            </Link>
+            <div className={styles.body}>
+                <h3 className={styles.title}>
+                    <a href={sourceUrl} target="_blank" rel="noreferrer">
+                        {title}
+                    </a>
+                </h3>
+
+                {variant !== "small" && description && (
+                    <p className={styles.desc}>{description}</p>
+                )}
+
+                <p className={styles.meta}>{timeAgo(publishedAt)}</p>
+            </div>
         </article>
-    )
-
+    );
 }
 
 export default ArticleCard;
