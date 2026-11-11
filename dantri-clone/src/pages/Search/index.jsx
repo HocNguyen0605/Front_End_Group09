@@ -8,7 +8,7 @@ function Search(){
         <section>
             <h1>Tìm kiếm</h1>
             <p>
-                {keyword? `Từ khóa tìm kiếm: ${keyword}}`: "Vui lòng nhập từ khóa tìm kiếm."}
+                {keyword? `Từ khóa tìm kiếm: ${keyword}`: "Vui lòng nhập từ khóa tìm kiếm."}
             </p>
         </section>
     );

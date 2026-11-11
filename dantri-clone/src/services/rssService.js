@@ -19,7 +19,6 @@ export async function fetchArticles(rssUrl) {
       xmlText,
       "application/xml"
     );
-
     // validate xml
     if (xmlDoc.querySelector("parsererror")) {
       throw new Error("RSS XML không hợp lệ");
