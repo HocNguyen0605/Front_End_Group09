@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import MainLayout from "../components/layout/MainLayout.jsx";
 import Home from "../pages/Home/index.jsx";
-import Category from "../pages/Category/CategoryPage.jsx";
+import Category from "../pages/Category/index.jsx";
 import ArticleDetail from "../pages/ArticleDetail/index.jsx";
 import Search from "../pages/Search/index.jsx";
 import Saved from "../pages/Saved/index.jsx";
