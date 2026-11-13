@@ -1,48 +1,12 @@
-import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-
 import ArticleCard from "../../components/article/ArticleCard";
 import { CATEGORIES } from "../../config/categories";
-import { fetchArticles } from "../../services/rssService";
+import { useFetchRss } from "../../hooks/useFetchRss";
 
 function CategoryPage() {
   const { slug } = useParams();
   const currentCategory = CATEGORIES.find((item) => item.slug === slug);
-
-  const [articles, setArticles] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    if (!currentCategory) {
-      setLoading(false);
-      return;
-    }
-
-    let isMounted = true;
-
-    async function loadArticles() {
-      try {
-        setLoading(true);
-        setError(null);
-
-        const data = await fetchArticles(currentCategory.rss);
-
-        if (isMounted) setArticles(data);
-      } catch (err) {
-        if (isMounted) setError(err.message);
-      } finally {
-        if (isMounted) setLoading(false);
-      }
-    }
-
-    loadArticles();
-
-    // Cleanup khi component unmount hoặc slug thay đổi
-    return () => {
-      isMounted = false;
-    };
-  }, [slug]);
+  const {articles, loading, error,} = useFetchRss(currentCategory?.rss);
 
   // Các return sớm nằm sau hooks
   if (!currentCategory) {
@@ -66,7 +30,7 @@ function CategoryPage() {
     return (
         <section className="container">
           <h1>{currentCategory.name}</h1>
-          <p>Có lỗi xảy ra: {error}</p>
+          <p>Có lỗi xảy ra: {error.message}</p>
         </section>
     );
   }
