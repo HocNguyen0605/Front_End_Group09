@@ -1,9 +1,9 @@
-import { useParams } from "react-router-dom";
+
+import { useSearchParams } from "react-router-dom";
 
 function Search(){
-    const [searchParams] = useParams();
-    const keyword = searchParams.get("q");
-
+    const [searchParams] = useSearchParams();
+    const keyword = searchParams.get("q") || "";
     return(
         <section>
             <h1>Tìm kiếm</h1>
