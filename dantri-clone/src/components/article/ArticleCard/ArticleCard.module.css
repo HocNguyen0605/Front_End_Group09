@@ -1,4 +1,10 @@
-.card { display: flex; flex-direction: column; gap: 8px; }
+.card {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 16px;
+    border-bottom: 1px solid var(--color-border);
+}
 
 .thumb { display: block; overflow: hidden; }
 .thumb img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
@@ -16,8 +22,6 @@
 }
 
 .meta { color: var(--color-text-muted); font-size: 0.875rem; }
-
-.large .title { font-size: 1.75rem; }
 .small .title { font-size: 1rem; }
 
 .horizontal { flex-direction: row; gap: 16px; }
@@ -27,3 +31,22 @@
 @media (max-width: 576px) {
     .horizontal .thumb { flex-basis: 120px; }
 }
+.large .thumb img,
+.small .thumb img,
+.compact .thumb img {
+    aspect-ratio: 3 / 2;
+}
+
+.large { gap: 10px; }
+.large .title { font-size: 2rem; }
+
+/* Chữ bên trái, ảnh bên phải */
+.compact {
+    flex-direction: row-reverse;
+    align-items: flex-start;
+    gap: 16px;
+}
+.compact .thumb { flex: 0 0 40%; }
+.compact .body { flex: 1; min-width: 0; }
+.compact .title { font-size: 1rem; }
+.compact .meta { display: none; }

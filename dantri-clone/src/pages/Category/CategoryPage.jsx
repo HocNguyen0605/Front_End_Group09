@@ -39,17 +39,7 @@ function CategoryPage() {
       <section className="container">
         <h1>{currentCategory.name}</h1>
 
-        {articles.length > 0 ? (
-            articles.map((article) => (
-                <ArticleCard
-                    key={article.id}
-                    article={article}
-                    variant="horizontal"
-                />
-            ))
-        ) : (
-            <p>Chưa có bài viết trong chuyên mục này.</p>
-        )}
+        <ArticleCard article={articles}/>
       </section>
   );
 }

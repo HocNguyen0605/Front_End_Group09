@@ -1,4 +1,3 @@
-import { timeAgo } from "../../../utils/formatDate";
 import styles from "./ArticleCard.module.css";
 
 function ArticleCard({ article, variant = "horizontal" }) {
@@ -19,11 +18,9 @@ function ArticleCard({ article, variant = "horizontal" }) {
                     </a>
                 </h3>
 
-                {variant !== "small" && description && (
+                {variant !== "small" && variant !== "compact" && description && (
                     <p className={styles.desc}>{description}</p>
                 )}
-
-                <p className={styles.meta}>{timeAgo(publishedAt)}</p>
             </div>
         </article>
     );

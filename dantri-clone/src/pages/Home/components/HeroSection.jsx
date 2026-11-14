@@ -1,15 +1,18 @@
 import ArticleCard from "../../../components/article/ArticleCard";
 import styles from "./HeroSection.module.css";
+import ArticleList from "../../../components/article/ArticleList/index.js";
 
-function HeroSection({ main, side }) {
+function HeroSection({ main, left = [], right = [] }) {
     return (
         <section className={styles.hero}>
-            <ArticleCard article={main} variant="large" />
-
-            <div className={styles.side}>
-                {side.map((article) => (
-                    <ArticleCard key={article.id} article={article} variant="small" />
-                ))}
+            <div className={styles.left}>
+                <ArticleList articles={left} variant="small"/>
+            </div>
+            <div className={styles.center}>
+                <ArticleCard article={main} variant="large" />
+            </div>
+            <div className={styles.right}>
+                <ArticleList articles={right} variant="compact"/>
             </div>
         </section>
     );
