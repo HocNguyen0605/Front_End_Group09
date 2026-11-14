@@ -10,6 +10,9 @@
     --color-text-primary: #222222;
     --color-text-secondary: #666666;
     --color-text-muted: #999999;
+    /* Status */
+    --color-danger: #c62828;
+    --color-danger-light: #fdf1f0;
     /*Background&Border*/
     --color-background: #ffffff;
     --color-surface: #f7f8fa;
