@@ -2,8 +2,10 @@
 import { useSearchParams } from "react-router-dom";
 
 import { useFetchAllArticles } from "../../hooks/useFetchAllArticles";
+import ArticleCard from "../../components/article/ArticleCard";
+import styles from "./Search.module.css";
 
-// Chuẩn hóa văn bản để tìm kiếm không phân biệt dấu
+// chuan hoa vban -> để linh hoạt khi search 
 function normalizeText(text = "") {
     return String(text)
         .toLowerCase()
@@ -15,10 +17,12 @@ function normalizeText(text = "") {
 
 function Search() {
     const [searchParams] = useSearchParams();
+
     // Lấy từ khóa từ URL
     const keyword = searchParams.get("q") || "";
-    // Kiểm tra từ khóa
+
     const hasKeyword = keyword.trim().length > 0;
+
     // Lấy dữ liệu RSS
     const {
         articles,
@@ -33,26 +37,36 @@ function Search() {
     // Lọc bài viết
     const filteredArticles = normalizedKeyword
         ? articles.filter((article) => {
+
             const searchableContent = [
                 article.title,
                 article.description,
                 article.feedCategory,
                 ...(Array.isArray(article.authors)
                     ? article.authors
-                    : [article.authors])
+                    : [article.authors || ""])
             ].join(" ");
+
             return normalizeText(searchableContent)
                 .includes(normalizedKeyword);
         })
         : [];
+
     return (
         <section className="container">
+
             <h1>Kết quả tìm kiếm</h1>
-            <p>
-                Từ khóa: {keyword}
-            </p>
+
+            {hasKeyword && (
+                <p>
+                    Từ khóa: <strong>{keyword}</strong>
+                </p>
+            )}
+
             {!hasKeyword && (
-                <p>Vui lòng nhập từ khóa tìm kiếm.</p>
+                <p>
+                    Vui lòng nhập từ khóa tìm kiếm.
+                </p>
             )}
             {hasKeyword && loading && (
                 <p>Đang tải dữ liệu bài viết...</p>
@@ -69,24 +83,23 @@ function Search() {
                         </p>
                     )}
                     <p>
-                        Tìm thấy {filteredArticles.length} bài viết.
+                        Tìm thấy{" "}
+                        <strong>
+                            {filteredArticles.length}
+                        </strong>{" "}
+                        bài viết.
                     </p>
+
                     {filteredArticles.length > 0 ? (
-                        <ul>
+                        <div className={styles.results}>
                             {filteredArticles.map((article) => (
-                                <li
-                                    key={
-                                        article.id ||
-                                        article.sourceUrl ||
-                                        article.title
-                                    }
-                                >
-                                    <strong>{article.title}</strong>
-                                    {" - "}
-                                    {article.feedCategory}
-                                </li>
+                                <ArticleCard
+                                    key={article.id}
+                                    article={article}
+                                    variant="horizontal"
+                                />
                             ))}
-                        </ul>
+                        </div>
                     ) : (
                         <p>
                             Không tìm thấy bài viết phù hợp.
