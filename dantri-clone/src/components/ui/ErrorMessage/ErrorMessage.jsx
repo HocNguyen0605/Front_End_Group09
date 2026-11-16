@@ -1,4 +1,4 @@
-import styles from "./Loading.module.css";
+import styles from "./ErrorMessage.module.css";
 
 function ErrorMessage({message = "Đã xảy ra lỗi khi tải dữ liệu."}){
     return(

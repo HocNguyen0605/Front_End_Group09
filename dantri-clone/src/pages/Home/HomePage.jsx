@@ -5,6 +5,8 @@ import NotableNews from "./components/NotableNews";
 import CategoryBlock from "./components/CategoryBlock";
 import styles from "./HomePage.module.css";
 import {useFetchRss} from "../../hooks/useFetchRss.js";
+import Loading from "../../components/ui/Loading";
+import ErrorMessage from "../../components/ui/ErrorMessage";
 
 const BLOCK_SLUGS = ["the-thao", "giao-duc", "cong-nghe"];
 function HomePage() {
@@ -12,14 +14,16 @@ function HomePage() {
   const{articles, loading, error,} = useFetchRss(homeCategory?.rss);
 
   if (loading) {
-    return <p>Đang tải tin tức...</p>;
+    return <Loading message="Đang tải tin tức..." />;
   }
 
   if (error) {
-    return <p>Có lỗi xảy ra: {error.message}</p>;
+    return <ErrorMessage message={`Có lỗi xảy ra: ${error.message}`} />;
   }
 
-  if (articles.length === 0) return <p>Chưa có bài viết.</p>;
+  if (articles.length === 0){
+    return <p>Chưa có bài viết.</p>
+  };
 
   const main = articles[0];
   const side = articles.slice(1, 5);

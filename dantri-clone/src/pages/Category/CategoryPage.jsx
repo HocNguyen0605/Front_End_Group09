@@ -2,6 +2,8 @@ import { useParams } from "react-router-dom";
 import ArticleCard from "../../components/article/ArticleCard";
 import { CATEGORIES } from "../../config/categories";
 import { useFetchRss } from "../../hooks/useFetchRss";
+import Loading from "../../components/ui/Loading";
+import ErrorMessage from "../../components/ui/ErrorMessage";
 
 function CategoryPage() {
   const { slug } = useParams();
@@ -20,8 +22,8 @@ function CategoryPage() {
   if (loading) {
     return (
         <section className="container">
-          <h1>{currentCategory.name}</h1>
-          <p>Đang tải tin tức...</p>
+            <h1>{currentCategory.name}</h1>
+            <Loading />
         </section>
     );
   }
@@ -29,8 +31,8 @@ function CategoryPage() {
   if (error) {
     return (
         <section className="container">
-          <h1>{currentCategory.name}</h1>
-          <p>Có lỗi xảy ra: {error.message}</p>
+            <h1>{currentCategory.name}</h1>
+            <ErrorMessage message={`Có lỗi xảy ra: ${error.message}`} />
         </section>
     );
   }
