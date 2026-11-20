@@ -1,9 +1,10 @@
-
 import { useSearchParams } from "react-router-dom";
 
 import { useFetchAllArticles } from "../../hooks/useFetchAllArticles";
 import ArticleCard from "../../components/article/ArticleCard";
 import styles from "./Search.module.css";
+import Loading from "../../components/ui/Loading";
+import ErrorMessage from "../../components/ui/ErrorMessage";
 
 // chuan hoa vban -> để linh hoạt khi search 
 function normalizeText(text = "") {
@@ -68,12 +69,8 @@ function Search() {
                     Vui lòng nhập từ khóa tìm kiếm.
                 </p>
             )}
-            {hasKeyword && loading && (
-                <p>Đang tải dữ liệu bài viết...</p>
-            )}
-            {hasKeyword && !loading && error && (
-                <p>{error.message}</p>
-            )}
+            {hasKeyword && loading && (<Loading message="Đang tải dữ liệu bài viết..." />)}
+            {hasKeyword && !loading && error && (<ErrorMessage message={error.message} />)}
             {hasKeyword && !loading && !error && (
                 <>
                     {hasPartialError && (

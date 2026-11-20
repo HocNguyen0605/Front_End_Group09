@@ -1,9 +1,10 @@
 import ArticleCard from "../../../components/article/ArticleCard";
+import SectionTitle from "../../../components/ui/SectionTitle";
 
 function NotableNews({ articles }) {
     return (
         <aside>
-            <h2 className="section-title">Tin đáng chú ý</h2>
+            <SectionTitle>Tin đáng chú ý</SectionTitle>
             <div style={{ display: "grid", gap: "16px" }}>
                 {articles.map((article) => (
                     <ArticleCard key={article.id} article={article} variant="small" />
