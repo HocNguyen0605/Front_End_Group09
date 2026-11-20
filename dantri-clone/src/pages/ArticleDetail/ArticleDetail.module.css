@@ -1,0 +1,279 @@
+
+.page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 28px 16px 56px;
+}
+
+.breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 28px;
+    color: #777;
+    font-size: 0.875rem;
+}
+
+.breadcrumb a:hover {
+    color: var(--color-primary);
+}
+
+/* Layout */
+.layout {
+    display: grid;
+    grid-template-columns: minmax(0, 820px) minmax(220px, 280px);
+    gap: 36px;
+    align-items: start;
+}
+
+/* Article */
+.article {
+    min-width: 0;
+}
+
+.category {
+    display: inline-block;
+    margin-bottom: 14px;
+    padding: 5px 12px;
+    border-radius: 4px;
+    background: var(--color-primary-light);
+    color: var(--color-primary);
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+.title {
+    margin-bottom: 18px;
+    color: #202020;
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    font-weight: 750;
+    line-height: 1.3;
+}
+
+.lead {
+    margin-bottom: 20px;
+    color: #555;
+    font-size: 1.1rem;
+    font-weight: 500;
+    line-height: 1.75;
+}
+
+/* Author and date */
+.meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 24px;
+    margin-bottom: 24px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--color-border);
+    color: #777;
+    font-size: 0.875rem;
+}
+
+.meta strong {
+    color: #333;
+}
+
+/* Hero image */
+.hero {
+    margin: 0 0 28px;
+}
+
+.hero img {
+    width: 100%;
+    max-height: 480px;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+.hero figcaption {
+    margin-top: 8px;
+    color: #999;
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+/* Content */
+.content {
+    color: #333;
+    font-size: 1.05rem;
+    line-height: 1.9;
+}
+
+.content h2 {
+    margin-bottom: 14px;
+    font-size: 1.35rem;
+    color: #222;
+}
+
+.content p {
+    white-space: pre-line;
+}
+
+/* Source */
+.source {
+    margin-top: 32px;
+    padding: 20px;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    background: var(--color-surface);
+}
+
+.source h3 {
+    margin-bottom: 8px;
+    font-size: 1rem;
+}
+
+.source p {
+    margin-bottom: 14px;
+    color: var(--color-text-secondary);
+    font-size: 0.9rem;
+}
+
+.sourceLink {
+    display: inline-block;
+    color: var(--color-primary);
+    font-weight: 600;
+}
+
+.sourceLink:hover {
+    text-decoration: underline;
+}
+
+.backLink {
+    display: inline-block;
+    margin-top: 24px;
+    color: var(--color-primary);
+    font-weight: 600;
+}
+
+/* Sidebar */
+.sidebar {
+    position: sticky;
+    top: 24px;
+}
+
+.sidebarCard {
+    padding: 20px;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    background: #fff;
+}
+
+.sidebarHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--color-primary);
+}
+
+.sidebarCard h3 {
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+.saveButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    background: #fff;
+    color: var(--color-primary);
+    cursor: pointer;
+}
+
+.saveButton:hover,
+.saveButton:focus-visible {
+    background: var(--color-primary-light);
+}
+
+.saveButton svg {
+    width: 30px;
+    height: 30px;
+}
+
+.saveButton.saved {
+    background: var(--color-primary-light);
+}
+
+.saveButton.saved svg {
+    fill: currentColor;
+}
+
+.infoItem {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 16px;
+    font-size: 0.875rem;
+}
+
+.infoItem span {
+    color: #888;
+}
+
+.infoItem strong {
+    overflow-wrap: anywhere;
+}
+
+.sidebarNote {
+    margin-top: 20px;
+    padding: 18px;
+    border-radius: 8px;
+    background: var(--color-primary-light);
+}
+
+.sidebarNote strong {
+    color: var(--color-primary);
+}
+
+.sidebarNote p {
+    margin-top: 8px;
+    color: #555;
+    font-size: 0.875rem;
+    line-height: 1.6;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .layout {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+
+    .sidebar {
+        position: static;
+    }
+}
+
+@media (max-width: 576px) {
+    .page {
+        padding: 20px 12px 36px;
+    }
+
+    .breadcrumb {
+        margin-bottom: 20px;
+        gap: 6px;
+        font-size: 0.8rem;
+    }
+
+    .title {
+        font-size: 1.75rem;
+    }
+
+    .lead {
+        font-size: 1rem;
+    }
+
+    .hero img {
+        border-radius: 4px;
+    }
+}
