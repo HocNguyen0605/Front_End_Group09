@@ -120,3 +120,7 @@ p {
     text-transform: uppercase;
     color: var(--color-primary);
 }
+.title-custom{
+    margin: 0px 0 16px;
+    color: var(--color-brand);
+}

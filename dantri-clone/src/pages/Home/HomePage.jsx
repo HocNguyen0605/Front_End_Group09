@@ -1,11 +1,10 @@
 import { CATEGORIES } from "../../config/categories";
 import HeroSection from "./components/HeroSection";
-import LatestNews from "./components/LatestNews";
-import NotableNews from "./components/NotableNews";
 import styles from "./HomePage.module.css";
 import {useFetchRss} from "../../hooks/useFetchRss.js";
 import Loading from "../../components/ui/Loading";
 import ErrorMessage from "../../components/ui/ErrorMessage";
+import SecondSection from "./components/SecondSection.jsx";
 
 function HomePage() {
   const homeCategory = CATEGORIES.find((category) => category.slug === "trang-chu");
@@ -31,10 +30,7 @@ function HomePage() {
   return (
       <div className={"container"}>
         <HeroSection main={main} left={left} right={right} />
-        <div className={styles.columns}>
-          <LatestNews articles={latest} />
-          <NotableNews articles={notable} />
-        </div>
+        <SecondSection article={latest} />
         </div>
   );
 }

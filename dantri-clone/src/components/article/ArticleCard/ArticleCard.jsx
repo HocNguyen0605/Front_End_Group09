@@ -47,7 +47,7 @@ function ArticleCard({ article, variant = "horizontal" }) {
                 </h3>
 
                 {/* Mô tả */}
-                {variant == "large" && description && (
+                {variant === "large" && description && (
                     <p className={styles.desc}> {description}</p>
                 )}
 

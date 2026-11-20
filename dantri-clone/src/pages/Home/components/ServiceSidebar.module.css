@@ -1,0 +1,95 @@
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.box {
+    padding: 20px;
+    border-radius: 4px;
+}
+
+.policy  { background: #faf6ee; }
+.gold    { background: #fdf0f2; }
+.lottery { background: #f4f4f4; }
+
+.boxHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.boxTitle {
+    font-size: 1.125rem;
+    font-weight: 700;
+    margin: 0 0 12px;
+}
+.boxHeader .boxTitle { margin: 0; }
+
+.partner {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #b3282d;
+}
+
+/* Giá vàng */
+.brand { font-weight: 600; margin: 0 0 8px; }
+
+.priceRow {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+.priceRow > div {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.priceRow > div + div {
+    padding-left: 16px;
+    border-left: 1px solid var(--color-border);
+}
+
+.label {
+    color: var(--color-text-secondary);
+    font-size: 0.95rem;
+}
+.price {
+    color: #d6293e;
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+.up   {
+    color: #1a9c4a;
+    font-size: 0.8em;
+}
+.down {
+    color: #d6293e;
+    font-size: 0.8em;
+}
+
+.footnote {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 12px;
+    color: var(--color-text-muted);
+    font-size: 0.8rem;
+}
+
+/* Vietlott */
+.games { margin: 0 0 12px; color: var(--color-text-secondary); }
+
+.jackpotRow,
+.numberRow {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    margin-top: 6px;
+}
+.jackpot { color: #d6293e; }
+.numberRow b { letter-spacing: 1px; }
