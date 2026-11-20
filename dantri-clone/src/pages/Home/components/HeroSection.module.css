@@ -2,19 +2,29 @@
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 2.2fr) minmax(0, 1.3fr);
     margin-top: 24px;
+    --hero-gap: 24px;
+    margin-bottom: 24px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--color-border);
+}
+.hero article {
+    padding: 0;
+    border-bottom: 0;
 }
 .center {
     padding-inline: 5px;
-    border-left: 1px solid var(--color-border);
-    border-right: 1px solid var(--color-border);
-    margin-bottom: 20px;
-
+    border-inline: 1px solid var(--color-border);
 }
 
 .left, .right {
     display: grid;
-    align-content: start;
-
+    flex-direction: column;
+}
+.left  {
+    padding-right: var(--hero-gap);
+}
+.right {
+    padding-left: var(--hero-gap);
 }
 
 @media (max-width: 992px) {

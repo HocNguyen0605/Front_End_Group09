@@ -1,4 +1,17 @@
-.list { display: grid; gap: 20px; }
+.list {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    gap: 16px;}
 .stack { grid-template-columns: 1fr; }
 .grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
 .empty { color: var(--color-text-muted); }
+.fill {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 0; }
+.fill > * {
+    flex: 1;
+}

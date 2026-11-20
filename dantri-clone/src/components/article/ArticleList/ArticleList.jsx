@@ -12,7 +12,7 @@ function ArticleList({
     }
 
     return (
-        <div className={`${styles.list} ${styles[layout]}`}>
+        <div className={`${styles.list} ${styles.fill} ${styles[layout]}`}>
             {articles.map((article) => (
                 <ArticleCard key={article.id} article={article} variant={variant} />
             ))}
