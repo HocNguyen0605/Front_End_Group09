@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { fetchArticles } from "../services/rssService";
 
 export function useFetchRss(rssUrl) {
-    // Ghi kết quả kèm url, để biết kết quả này thuộc về url nào
+    // Ghi kết quả kèm url
     const [result, setResult] = useState({ url: null, articles: [], error: null });
 
     useEffect(() => {

@@ -1,7 +1,6 @@
-
+import styles from "./ArticleCard.module.css";
 import { Link } from "react-router-dom";
 import { timeAgo } from "../../../utils/formatDate";
-import styles from "./ArticleCard.module.css";
 
 function ArticleCard({ article, variant = "horizontal" }) {
     const {
@@ -48,16 +47,9 @@ function ArticleCard({ article, variant = "horizontal" }) {
                 </h3>
 
                 {/* Mô tả */}
-                {variant !== "small" && description && (
-                    <p className={styles.desc}>
-                        {description}
-                    </p>
+                {variant === "large" && description && (
+                    <p className={styles.desc}> {description}</p>
                 )}
-
-                {/* Thời gian */}
-                <p className={styles.meta}>
-                    {timeAgo(publishedAt)}
-                </p>
 
             </div>
         </article>
