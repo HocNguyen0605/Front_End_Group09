@@ -1,11 +1,14 @@
-import ArticleList from "../../../components/article/ArticleList/index.js";
+import ArticleCard from "../../../components/article/ArticleCard";
+import SectionTitle from "../../../components/ui/SectionTitle";
 
 function LatestNews({ articles }) {
     return (
         <section>
-            <h2 className="section-title">Tin mới nhất</h2>
+            <SectionTitle>Tin mới nhất</SectionTitle>
             <div style={{ display: "grid", gap: "20px" }}>
-                <ArticleList articles={articles} variant="horizontal"/>
+                {articles.map((article) => (
+                    <ArticleCard key={article.id} article={article} variant="horizontal" />
+                ))}
             </div>
         </section>
     );
