@@ -11,15 +11,13 @@ export default defineConfig({
                 target: "https://dantri.com.vn",
                 changeOrigin: true,
             },
-
             // Proxy lấy HTML bài báo
-            "/article": {
+            "/api/article-proxy": {
                 target: "https://dantri.com.vn",
                 changeOrigin: true,
-
                 // xóa prefix trước khi gửi request
                 rewrite: (path) =>
-                    path.replace(/^\/article/, ""),
+                    path.replace(/^\/api\/article-proxy/, ""),
             },
         },
     },
