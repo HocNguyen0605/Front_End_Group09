@@ -1,4 +1,6 @@
 .navbar {
+    position: relative;
+    z-index: 100;
     width: 100%;
     background-color: var(--color-background);
     border-bottom: 1px solid var(--color-border);
@@ -9,14 +11,9 @@
     max-width: var(--container-width);
     margin-inline: auto;
     padding-inline: var(--page-gutter);
-    overflow-x: auto;
-    scrollbar-width: none;
 }
 
-.container::-webkit-scrollbar {
-    display: none;
-}
-
+/* Danh sách danh mục chính */
 .list {
     display: flex;
     align-items: center;
@@ -29,10 +26,12 @@
 }
 
 .item {
+    position: relative;
     flex-shrink: 0;
     list-style: none;
 }
 
+/* Liên kết danh mục cha */
 .link {
     display: block;
     padding: 12px 6px;
@@ -41,7 +40,9 @@
     font-weight: 700;
     white-space: nowrap;
     border-bottom: 3px solid transparent;
-    transition: color 0.2s ease;
+    transition:
+            color 0.2s ease,
+            border-color 0.2s ease;
 }
 
 .link:hover,
@@ -50,9 +51,94 @@
     border-bottom-color: var(--color-primary);
 }
 
-@media (max-width: 576px) {
+/* Dropdown menu */
+.subMenu {
+    position: absolute;
+    top: calc(100% - 1px);
+    left: 0;
+    z-index: 1000;
+    width: max-content;
+    min-width: 210px;
+    max-width: min(420px, calc(100vw - 24px));
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    background-color: #eeeeee;
+    border-radius: 0 0 6px 6px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(8px);
+    transition:
+            opacity 0.2s ease,
+            visibility 0.2s ease,
+            transform 0.2s ease;
+}
+
+/* Hiển thị dropdown khi hover danh mục cha */
+.item:hover > .subMenu,
+.item:focus-within > .subMenu {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+/* Từng mục con */
+.subMenuItem {
+    list-style: none;
+    border-bottom: 1px solid #d5d5d5;
+}
+
+.subMenuItem:last-child {
+    border-bottom: none;
+}
+
+/* Liên kết danh mục con */
+.subMenuLink {
+    display: block;
+    padding: 12px 15px;
+    color: #555555;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.4;
+    white-space: normal;
+    text-transform: uppercase;
+    transition:
+            color 0.2s ease,
+            background-color 0.2s ease,
+            padding-left 0.2s ease;
+}
+
+/* Hiệu ứng hover từng mục con */
+.subMenuLink:hover,
+.subMenuLink:focus-visible,
+.subMenuLink.active {
+    color: #0066ff;
+    background-color: #e4e4e4;
+    padding-left: 21px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .list {
+        width: 100%;
+        min-width: 0;
+        flex-wrap: wrap;
+    }
     .link {
         padding: 10px 8px;
+    }
+}
+
+@media (max-width: 576px) {
+    .subMenu {
+        min-width: 190px;
+        max-width: calc(100vw - 24px);
+    }
+    .subMenuLink {
+        padding: 10px 12px;
         font-size: 13px;
     }
 }

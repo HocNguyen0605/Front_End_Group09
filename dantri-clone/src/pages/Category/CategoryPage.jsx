@@ -1,9 +1,9 @@
 import { useParams } from "react-router-dom";
+import ArticleCard from "../../components/article/ArticleCard";
 import { CATEGORIES } from "../../config/categories";
 import { useFetchRss } from "../../hooks/useFetchRss";
 import Loading from "../../components/ui/Loading";
 import ErrorMessage from "../../components/ui/ErrorMessage";
-import ArticleList from "../../components/article/ArticleList/index.js";
 
 function CategoryPage() {
     const {slug} = useParams();
@@ -28,7 +28,10 @@ function CategoryPage() {
                     <ErrorMessage message={`Có lỗi xảy ra: ${error.message}`}/>
                 )}
 
-                {!loading && !error && articles.length > 0 && <ArticleList articles={articles} variant={"horizontal"}/>}
+                {!loading && !error && articles.length > 0 && (articles.map((article) => (
+                        <ArticleCard key={article.id} article={article} variant="horizontal"/>
+                    ))
+                )}
 
                 {!loading && !error && articles.length === 0 && (
                     <p>Chưa có bài viết trong chuyên mục này.</p>

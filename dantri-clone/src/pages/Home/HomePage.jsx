@@ -1,10 +1,10 @@
 import { CATEGORIES } from "../../config/categories";
 import HeroSection from "./components/HeroSection";
-import styles from "./HomePage.module.css";
 import {useFetchRss} from "../../hooks/useFetchRss.js";
 import Loading from "../../components/ui/Loading";
 import ErrorMessage from "../../components/ui/ErrorMessage";
 import SecondSection from "./components/SecondSection.jsx";
+import styles from "./HomePage.module.css";
 
 function HomePage() {
   const homeCategory = CATEGORIES.find((category) => category.slug === "trang-chu");
