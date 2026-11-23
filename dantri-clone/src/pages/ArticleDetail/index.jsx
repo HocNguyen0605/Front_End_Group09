@@ -1,28 +1,20 @@
-
 import { Link, useLocation, useParams } from "react-router-dom";
 import { FiBookmark } from "react-icons/fi";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
-
+import { useFetchArticleContent } from "../../hooks/useFetchArticleContent";
 import { useFetchAllArticles } from "../../hooks/useFetchAllArticles";
 import { CATEGORIES } from "../../config/categories";
 import { formatDate } from "../../utils/formatDate";
-
 import styles from "./ArticleDetail.module.css";
 
 function ArticleDetail() {
-
     // Lấy ID bài viết trên URL
     const { id } = useParams();
-
     // Lấy dữ liệu được truyền từ ArticleCard
     const location = useLocation();
-
     const passedArticle = location.state?.article;
-
     // Chỉ sử dụng state khi đúng bài viết trên URL
-    const articleFromState =
-        passedArticle?.id === id ? passedArticle : null;
-
+    const articleFromState = passedArticle?.id === id ? passedArticle : null;
     // Nếu đã có dữ liệu thì không cần fetch lại
     // Nếu không có thì lấy RSS để tìm bài viết
     const {
@@ -30,31 +22,38 @@ function ArticleDetail() {
         loading,
         error,
     } = useFetchAllArticles(!articleFromState);
-
-    // Tìm bài viết theo ID nếu không có Navigation State
+    // find bài viết theo ID nếu không có Navigation State
     const article =
         articleFromState ||
         articles.find((item) =>
             item.id === id || item.sourceUrl === id
         );
-
-    const [savedArticles, setSavedArticles] = useLocalStorage(
-        "savedArticles",
-        []
-    );
-
+    // lấy nội dung chi tiết
+    const {
+        data: articleContent,
+        loading: contentLoading,
+        error: contentError,
+    } = useFetchArticleContent(article?.sourceUrl);
+    const [savedArticles, setSavedArticles] = useLocalStorage("savedArticles", []);
     const isSaved = article
         ? savedArticles.some((savedArticle) => savedArticle.id === article.id)
         : false;
 
+    // Tránh hiển thị trùng ảnh giữa RSS và nội dung chi tiết
+    const hasInlineImages = articleContent?.content?.some(
+        (block) => block.type === "image" && block.imageUrl
+    ) ?? false;
+    const showHeroImage =
+        article?.imageUrl &&
+        !contentLoading &&
+        !hasInlineImages;
+
     function handleSaveArticle() {
         if (!article) return;
-
         setSavedArticles((currentArticles) => {
             const alreadySaved = currentArticles.some(
                 (savedArticle) => savedArticle.id === article.id
             );
-
             return alreadySaved
                 ? currentArticles.filter(
                     (savedArticle) => savedArticle.id !== article.id
@@ -78,10 +77,7 @@ function ArticleDetail() {
             <section className="container">
                 <h1>Không thể tải bài viết</h1>
                 <p>{error.message}</p>
-
-                <Link to="/">
-                    Quay lại trang chủ
-                </Link>
+                <Link to="/">Quay lại trang chủ</Link>
             </section>
         );
     }
@@ -91,14 +87,8 @@ function ArticleDetail() {
         return (
             <section className="container">
                 <h1>Không tìm thấy bài viết</h1>
-
-                <p>
-                    Bài viết không tồn tại 
-                </p>
-
-                <Link to="/">
-                    Quay lại trang chủ
-                </Link>
+                <p>Bài viết không tồn tại</p>
+                <Link to="/">Quay lại trang chủ</Link>
             </section>
         );
     }
@@ -110,13 +100,10 @@ function ArticleDetail() {
 
     return (
         <div className={styles.page}>
-
             {/* Breadcrumb */}
             <nav className={styles.breadcrumb}>
                 <Link to="/">Trang chủ</Link>
-
                 <span>/</span>
-
                 {category ? (
                     <Link to={`/category/${category.slug}`}>
                         {article.feedCategory}
@@ -124,17 +111,13 @@ function ArticleDetail() {
                 ) : (
                     <span>{article.feedCategory}</span>
                 )}
-
                 <span>/</span>
-
                 <span>Chi tiết bài viết</span>
             </nav>
 
             <div className={styles.layout}>
-
                 {/* Nội dung bài viết */}
                 <article className={styles.article}>
-
                     {/* Tiêu đề */}
                     <h1 className={styles.title}>
                         {article.title}
@@ -149,81 +132,131 @@ function ArticleDetail() {
 
                     {/* Thông tin tác giả và ngày đăng */}
                     <div className={styles.meta}>
-
                         {article.authors?.length > 0 && (
                             <span>
                                 Tác giả:{" "}
-                                <strong>
-                                    {article.authors.join(", ")}
-                                </strong>
+                                <strong>{article.authors.join(", ")}</strong>
                             </span>
                         )}
-
                         {article.publishedAt && (
                             <time>
                                 {formatDate(article.publishedAt)}
                             </time>
                         )}
-
                     </div>
 
                     {/* Ảnh bài viết */}
-                    {article.imageUrl && (
+                    {showHeroImage && (
                         <figure className={styles.hero}>
                             <img
                                 src={article.imageUrl}
                                 alt={article.title}
+                                loading="lazy"
                             />
-
-                            <figcaption>
-                                Hình ảnh minh họa cho bài viết
-                            </figcaption>
                         </figure>
                     )}
 
-                    {/* Nội dung */}
+                    {/* Nội dung chi tiết */}
                     <div className={styles.content}>
-
-                        <h2>Tóm tắt bài viết</h2>
-
-                        <p>
-                            {article.description ||
-                                "RSS chưa có nội dung chi tiết"
-                            }
-                        </p>
-
-                    </div>
-
-                    {/* Nguồn dữ liệu */}
-                    <div className={styles.source}>
-                        <h3>Thông tin nguồn bài viết</h3>
-
-                    
-                        {article.sourceUrl && (
-                            <a
-                                href={article.sourceUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className={styles.sourceLink}
-                            >
-                                Xem bài viết gốc
-                            </a>
+                        {/* loading */}
+                        {contentLoading && (
+                            <p>Đang tải nội dung bài báo...</p>
                         )}
-                    </div>
 
-                    <Link to="/" className={styles.backLink}>
-                        ← Quay lại trang chủ
-                    </Link>
+                        {/* error */}
+                        {contentError && (
+                            <p role="alert">
+                                Không thể tải nội dung bài báo:
+                                {" "}{contentError.message}
+                            </p>
+                        )}
 
+                        {/* content */}
+                        {articleContent && (
+                            <>
+                                {articleContent.content.map((block, index) => {
+                                    switch (block.type) {
+                                        // Đoạn văn
+                                        case "paragraph":
+                                            return (
+                                                <p key={index}>
+                                                    {block.text}
+                                                </p>
+                                            );
+
+                                        // Tiêu đề phụ
+                                        case "heading": {
+                                            const HeadingTag =
+                                                block.level === 3 ? "h3" : "h2";
+                                            return (
+                                                <HeadingTag key={index}>
+                                                    {block.text}
+                                                </HeadingTag>
+                                            );
+                                        }
+
+                                        // Hình ảnh và chú thích
+                                        case "image":
+                                            return (
+                                                <figure
+                                                    key={index}
+                                                    className={styles.contentFigure}
+                                                >
+                                                    {block.imageUrl && (
+                                                        <img
+                                                            src={block.imageUrl}
+                                                            alt={block.alt}
+                                                            loading="lazy"
+                                                        />
+                                                    )}
+                                                    {block.caption && (
+                                                        <figcaption>
+                                                            {block.caption}
+                                                        </figcaption>
+                                                    )}
+                                                </figure>
+                                            );
+
+                                        // Trích dẫn
+                                        case "quote":
+                                            return (
+                                                <blockquote key={index}>
+                                                    {block.text}
+                                                </blockquote>
+                                            );
+
+                                        // Danh sách
+                                        case "list": {
+                                            const ListTag =
+                                                block.ordered ? "ol" : "ul";
+                                            return (
+                                                <ListTag key={index}>
+                                                    {block.items.map((item, i) => (
+                                                        <li key={i}>{item}</li>
+                                                    ))}
+                                                </ListTag>
+                                            );
+                                        }
+
+                                        default:
+                                            return null;
+                                    }
+                                })}
+                            </>
+                        )}
+
+                        {/* Không có dữ liệu */}
+                        {!contentLoading && !contentError && !articleContent && (
+                            <p>Chưa có nội dung bài báo.</p>
+                        )}
+                    </div>           
                 </article>
 
                 {/* Sidebar */}
                 <aside className={styles.sidebar}>
-
                     <div className={styles.sidebarCard}>
                         <div className={styles.sidebarHeader}>
                             <h3>Thông tin bài viết</h3>
-
                             <button
                                 type="button"
                                 className={`${styles.saveButton} ${isSaved ? styles.saved : ""}`}
@@ -256,11 +289,7 @@ function ArticleDetail() {
                             </strong>
                         </div>
                     </div>
-
-                    
-
                 </aside>
-
             </div>
         </div>
     );

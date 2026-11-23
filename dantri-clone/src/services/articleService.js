@@ -1,4 +1,4 @@
-const ARTICLE_PROXY_PREFIX = "/article";
+const ARTICLE_PROXY_PREFIX = "/api/article-proxy";
 
 const ALLOWED_HOSTS = [
     "dantri.com.vn",
