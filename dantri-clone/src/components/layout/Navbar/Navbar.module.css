@@ -76,9 +76,8 @@
             transform 0.2s ease;
 }
 
-/* Hiển thị dropdown khi hover danh mục cha */
-.item:hover > .subMenu,
-.item:focus-within > .subMenu {
+/* Chỉ mở dropdown được React lựa chọn */
+.subMenuOpen {
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
@@ -90,7 +89,6 @@
     list-style: none;
     border-bottom: 1px solid #d5d5d5;
 }
-
 .subMenuItem:last-child {
     border-bottom: none;
 }
