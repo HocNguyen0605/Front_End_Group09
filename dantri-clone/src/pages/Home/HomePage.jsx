@@ -5,6 +5,7 @@ import Loading from "../../components/ui/Loading";
 import ErrorMessage from "../../components/ui/ErrorMessage";
 import SecondSection from "./components/SecondSection.jsx";
 import styles from "./HomePage.module.css";
+import ThirdSection from "./components/ThirdSection.jsx";
 
 function HomePage() {
   const homeCategory = CATEGORIES.find((category) => category.slug === "trang-chu");
@@ -25,12 +26,13 @@ function HomePage() {
   const main = articles[0];
   const left = articles.slice(1, 3);
   const right = articles.slice(3, 7);
-  const latest = articles.slice(7, 17);
-  const notable = articles.slice(17, 22);
+  const latest_section2 = articles.slice(7, 17);
+  const latest_section3 = articles.slice(17, 41);
   return (
       <div className={"container"}>
         <HeroSection main={main} left={left} right={right} />
-        <SecondSection article={latest} />
+        <SecondSection article={latest_section2} />
+        <ThirdSection article={latest_section3}/>
         </div>
   );
 }
