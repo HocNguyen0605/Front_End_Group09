@@ -7,7 +7,7 @@ function ArticleCard({ article, variant = "horizontal" }) {
         title,
         description,
         imageUrl,
-        publishedAt
+        feedCategory
     } = article;
 
     //  id và đường dẫn cho trang chi tiết
@@ -43,7 +43,10 @@ function ArticleCard({ article, variant = "horizontal" }) {
                     </Link>
                 </h3>
                 {/* Mô tả */}
-                {variant === "large" && description && (
+                {variant === "large"  && description && (
+                    <p className={styles.desc}> {description}</p>
+                )}
+                {variant === "part"  && description && (
                     <p className={styles.desc}> {description}</p>
                 )}
             </div>
