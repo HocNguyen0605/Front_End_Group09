@@ -1,5 +1,5 @@
-import ArticleCard from "../../../components/article/ArticleCard";
-import SectionTitle from "../../../components/ui/SectionTitle";
+import ArticleCard from "../../../../components/article/ArticleCard/index.js";
+import SectionTitle from "../../../../components/ui/SectionTitle/index.js";
 
 function LatestNews({ articles }) {
     return (

@@ -1,7 +1,7 @@
 import styles from "./SecondSection.module.css";
 import ArticleList from "../../../components/article/ArticleList/index.js";
-import ForYouNews from "./ForYouNews.jsx";
-import ServiceSidebar from "./ServiceSidebar.jsx";
+import ForYouNews from "./subComponent/ForYouNews.jsx";
+import ServiceSidebar from "./subComponent/ServiceSidebar.jsx";
 
 function SecondSection({ article = [] }){
     const left = article.slice(0, 3);

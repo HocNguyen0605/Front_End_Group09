@@ -1,5 +1,5 @@
-import SectionTitle from "../../../components/ui/SectionTitle/index.js";
-import ArticleList from "../../../components/article/ArticleList/index.js";
+import SectionTitle from "../../../../components/ui/SectionTitle/index.js";
+import ArticleList from "../../../../components/article/ArticleList/index.js";
 
 // TODO -Tạm lấy tin mới, chưa áp dụng các xử lý để lấy đúng cái cần
 function ForYouNews({ articles, variant="small" }) {

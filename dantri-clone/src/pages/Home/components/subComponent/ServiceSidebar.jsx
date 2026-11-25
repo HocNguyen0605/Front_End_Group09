@@ -1,5 +1,5 @@
 import styles from "./ServiceSidebar.module.css";
-import ArticleList from "../../../components/article/ArticleList/index.js";
+import ArticleList from "../../../../components/article/ArticleList/index.js";
 
 const MOCK_GOLD = {
     brand: "Kim Gia Bảo 24K",
