@@ -5,7 +5,7 @@ import Loading from "../../components/ui/Loading";
 import ErrorMessage from "../../components/ui/ErrorMessage";
 import SecondSection from "./components/SecondSection.jsx";
 import styles from "./HomePage.module.css";
-import ThirdSection from "./components/ThirdSection.jsx";
+import ThirdSection from "./components/subComponent/ThirdSection.jsx";
 
 function HomePage() {
   const homeCategory = CATEGORIES.find((category) => category.slug === "trang-chu");

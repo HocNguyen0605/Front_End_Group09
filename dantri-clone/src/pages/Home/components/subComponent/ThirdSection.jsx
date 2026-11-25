@@ -1,6 +1,6 @@
-import ThirdLeft from "./ThirdLeft.jsx";
+import ThirdLeft from "../ThirdLeft.jsx";
 import ThirdRight from "./ThirdRight.jsx";
-import styles from "./ThirdSection.module.css";
+import styles from "../ThirdSection.module.css";
 
 function ThirdSection({article}) {
 
