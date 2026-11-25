@@ -1,0 +1,27 @@
+.page {
+    padding-top: 20px;
+    padding-bottom: 48px;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    min-height: 300px;
+}
+
+.empty {
+    padding: 24px 0;
+    color: var(--color-text-muted);
+    font-size: 15px;
+}
+
+@media (max-width: 576px) {
+    .page {
+        padding-top: 14px;
+        padding-bottom: 32px;
+    }
+    .content {
+        gap: 24px;
+    }
+}

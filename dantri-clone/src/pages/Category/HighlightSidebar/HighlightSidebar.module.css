@@ -1,0 +1,38 @@
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.heading {
+    margin: 0 0 16px;
+    padding-top: 12px;
+    font-size: 16px;
+    font-weight: 700;
+    border-top: 1px solid var(--color-border);
+}
+
+.mainArticle {
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.mainArticle :global(h3) {
+    font-size: 1.4rem;
+}
+
+.otherArticles {
+    display: flex;
+    flex-direction: column;
+}
+
+.empty {
+    color: var(--color-text-muted);
+    font-size: 14px;
+}
+
+@media (max-width: 900px) {
+    .sidebar {
+        margin-top: 24px;
+    }
+}
