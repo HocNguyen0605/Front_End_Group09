@@ -12,12 +12,10 @@ function ArticleCard({ article, variant = "horizontal" }) {
 
     //  id và đường dẫn cho trang chi tiết
     const articleId = article.id || article.sourceUrl;
-
     const detailPath = `/article/${encodeURIComponent(articleId)}`;
 
     return (
         <article className={`${styles.card} ${styles[variant]}`}>
-
             {/* Ảnh bài viết */}
             {imageUrl && (
                 <Link
@@ -49,7 +47,6 @@ function ArticleCard({ article, variant = "horizontal" }) {
                         {title}
                     </Link>
                 </h3>
-
                 {/* Mô tả */}
                 {variant === "large"  && description && (
                     <p className={styles.desc}> {description}</p>
