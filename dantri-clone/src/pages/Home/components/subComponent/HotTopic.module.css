@@ -1,0 +1,62 @@
+.block {
+    --hot: #d0021b;
+    margin-block: 24px;
+    padding: 16px 20px 20px;
+    background: #f7f0f0;
+}
+
+/* Tiêu đề + 2 nút */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+.heading {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--hot);
+}
+
+.controls { display: flex; gap: 8px; }
+.controls button {
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    border: 0;
+    border-radius: 50%;
+    background: #fff;
+    color: var(--color-text-primary);
+}
+.controls button:hover { background: var(--color-primary-light); }
+
+/* Khung cuộn */
+.viewport {
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+.viewport::-webkit-scrollbar { display: none; }
+
+.track {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: max-content;
+}
+.row {
+    display: flex;
+    gap: 12px;
+}
+
+.chip {
+    padding: 10px 20px;
+    border-radius: 999px;
+    background: #fff;
+    font-weight: 700;
+    white-space: nowrap;
+}
+.chip:hover { color: var(--color-primary); }

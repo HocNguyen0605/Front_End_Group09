@@ -7,15 +7,17 @@ function ArticleCard({ article, variant = "horizontal" }) {
         title,
         description,
         imageUrl,
-        publishedAt
+        feedCategory
     } = article;
 
     //  id và đường dẫn cho trang chi tiết
     const articleId = article.id || article.sourceUrl;
+
     const detailPath = `/article/${encodeURIComponent(articleId)}`;
 
     return (
         <article className={`${styles.card} ${styles[variant]}`}>
+
             {/* Ảnh bài viết */}
             {imageUrl && (
                 <Link
@@ -33,6 +35,11 @@ function ArticleCard({ article, variant = "horizontal" }) {
             )}
 
             <div className={styles.body}>
+                {/*Category */}
+                {variant === "hotNews" && feedCategory && (
+                    <span className={styles.category}>{feedCategory}</span>
+                )}
+
                 {/* Tiêu đề */}
                 <h3 className={styles.title}>
                     <Link
@@ -42,10 +49,15 @@ function ArticleCard({ article, variant = "horizontal" }) {
                         {title}
                     </Link>
                 </h3>
+
                 {/* Mô tả */}
-                {variant === "large" && description && (
+                {variant === "large"  && description && (
                     <p className={styles.desc}> {description}</p>
                 )}
+                {variant === "part"  && description && (
+                    <p className={styles.desc}> {description}</p>
+                )}
+
             </div>
         </article>
     );

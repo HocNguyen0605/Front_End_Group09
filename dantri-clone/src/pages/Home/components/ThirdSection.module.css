@@ -1,0 +1,23 @@
+.section {
+    --gap: 24px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    margin-block: 24px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.left, .right { overflow-wrap: anywhere;}
+.left{
+    padding-right: 12px;
+}
+.right {
+    padding-left: 12px;
+    border-left: 1px solid var(--color-border);
+}
+
+@media (max-width: 768px) {
+    .section { grid-template-columns: 1fr; }
+    .left    { padding-right: 0; }
+    .right   { padding-left: 0; border-left: 0; }
+}
