@@ -1,8 +1,9 @@
 import ArticleCard from "../../../components/article/ArticleCard";
+import ArticleList from "../../../components/article/ArticleList";
 import Advertisement from "../Advertisement/Advertisement";
 import styles from "./HighlightSidebar.module.css";
 
-function HighlightSidebar({articles}) {
+function HighlightSidebar({articles = [] }) {
     const mainArticle = articles[0];
     const otherArticles = articles.slice(1);
 
@@ -21,13 +22,7 @@ function HighlightSidebar({articles}) {
 
             {otherArticles.length > 0 && (
                 <div className={styles.otherArticles}>
-                    {otherArticles.map((article) => (
-                        <ArticleCard
-                            key={article.id || article.sourceUrl || article.title}
-                            article={article}
-                            variant="split"
-                        />
-                    ))}
+                    <ArticleList articles={otherArticles} variant="split" layout="stack"/>
                 </div>
             )}
 

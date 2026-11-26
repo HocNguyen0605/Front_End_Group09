@@ -1,8 +1,9 @@
 import ArticleCard from "../../../components/article/ArticleCard";
+import ArticleList from "../../../components/article/ArticleList";
 import Advertisement from "../Advertisement/Advertisement";
 import styles from "./FeaturedSection.module.css";
 
-function FeaturedSection({articles}){
+function FeaturedSection({articles = []}){
     const mainArticle = articles[0];
     const sideArticles = articles.slice(1, 3);
     const bottomArticles = articles.slice(3, 7);
@@ -20,26 +21,13 @@ function FeaturedSection({articles}){
                     </div>
 
                     <div className={styles.sideArticles}>
-                        {sideArticles.map((article) => (
-                            <ArticleCard
-                                key={article.id || article.sourceUrl || article.title}
-                                article={article}
-                                variant={"small"}
-                            />
-                        ))}
+                        <ArticleList articles={sideArticles} variant="small" layout="stack"/>
                     </div>
                 </div>
 
                 {bottomArticles.length > 0 && (
                     <div className={styles.bottomArticles}>
-                        {bottomArticles.map((article) => (
-                            <div
-                                key={article.id || article.sourceUrl || article.title}
-                                className={styles.bottomItem}
-                            >
-                                <ArticleCard article={article} variant="small"/>
-                            </div>
-                        ))}
+                        <ArticleList articles={bottomArticles} variant="small" layout="grid"/>
                     </div>
                 )}
             </div>
