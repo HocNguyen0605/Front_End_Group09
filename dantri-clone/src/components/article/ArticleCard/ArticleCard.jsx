@@ -57,6 +57,9 @@ function ArticleCard({ article, variant = "horizontal" }) {
                 {variant === "part"  && description && (
                     <p className={styles.desc}> {description}</p>
                 )}
+                {variant === "subTopic"  && description && (
+                    <p className={styles.desc}> {description}</p>
+                )}
 
             </div>
         </article>
