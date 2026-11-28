@@ -6,12 +6,14 @@ import ArticleDetail from "../pages/ArticleDetail/index.jsx";
 import Search from "../pages/Search/index.jsx";
 import Saved from "../pages/Saved/index.jsx";
 import NotFound from "../pages/NotFound/index.jsx";
+import LatestNewsPage from "../pages/LatestNews/index.jsx";
 
 function AppRoutes() {
   return (
     <Routes>
       <Route element={<MainLayout />}>
         <Route path="/" element={<Home />} />
+        <Route path="/tin-moi-nhat.htm" element={<LatestNewsPage />} />
 
         <Route
           path="/category/:slug"

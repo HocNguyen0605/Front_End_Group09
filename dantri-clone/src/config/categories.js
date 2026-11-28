@@ -6,6 +6,11 @@ export const CATEGORIES = [
     rss: "https://dantri.com.vn/rss/home.rss",
   },
   {
+    slug: "tin-moi-nhat",
+    name: "Mới nhất",
+    rss: "https://dantri.com.vn/rss/tin-moi-nhat.rss",
+  },
+  {
     slug: "thoi-su",
     name: "Thời sự",
     rss: "https://dantri.com.vn/rss/thoi-su.rss",
