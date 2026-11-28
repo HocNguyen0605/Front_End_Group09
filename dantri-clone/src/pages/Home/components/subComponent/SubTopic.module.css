@@ -30,6 +30,7 @@
 }
 .left  { padding-right: 16px; }
 .right {
+    --compact-thumb: 28%;
     padding-left: 16px;
     border-left: 1px solid var(--color-border);
 }

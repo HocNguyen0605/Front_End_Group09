@@ -67,7 +67,7 @@
 .compact {
     flex-direction: row-reverse;
     align-items: center;
-    --thumb-w: 40%;
+    --thumb-w: var(--compact-thumb, 40%);
 }
 .compact .meta { display: none; }
 
