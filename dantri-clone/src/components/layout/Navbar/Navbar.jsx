@@ -44,8 +44,14 @@ function Navbar() {
                                 }}
                             >
                                 <NavLink
-                                    to={category.slug === "trang-chu" ? "/" : `/category/${category.slug}`}
-                                    end={category.slug === "trang-chu"}
+                                    to={
+                                        category.slug === "trang-chu"
+                                            ? "/"
+                                            : category.slug === "tin-moi-nhat"
+                                                ? "/tin-moi-nhat.htm"
+                                                : `/category/${category.slug}`
+                                    }
+                                    end={category.slug === "trang-chu" || category.slug === "tin-moi-nhat"}
                                     aria-expanded={hasChildren ? isOpen : undefined}
                                     aria-haspopup={hasChildren ? "true" : undefined}
                                     className={({ isActive }) => `${styles.link} ${isActive ? styles.active : ""}`}
