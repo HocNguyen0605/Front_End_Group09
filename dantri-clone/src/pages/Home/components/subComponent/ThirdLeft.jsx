@@ -1,6 +1,6 @@
-import ArticleList from "../../../components/article/ArticleList/index.js";
-import HotNews from "./subComponent/HotNews.jsx"
-import HotTopic from "./subComponent/HotTopic.jsx"
+import ArticleList from "../../../../components/article/ArticleList/index.js";
+import HotNews from "./HotNews.jsx"
+import HotTopic from "./HotTopic.jsx"
 
 function ThirdLeft({article = []}){
     const part1 = article.slice(0,4)

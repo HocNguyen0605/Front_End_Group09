@@ -33,6 +33,11 @@ function ArticleCard({ article, variant = "horizontal" }) {
             )}
 
             <div className={styles.body}>
+                {/*Category */}
+                {variant === "hotNews" && feedCategory && (
+                    <span className={styles.category}>{feedCategory}</span>
+                )}
+
                 {/* Tiêu đề */}
                 <h3 className={styles.title}>
                     <Link
@@ -49,6 +54,10 @@ function ArticleCard({ article, variant = "horizontal" }) {
                 {variant === "part"  && description && (
                     <p className={styles.desc}> {description}</p>
                 )}
+                {variant === "subTopic"  && description && (
+                    <p className={styles.desc}> {description}</p>
+                )}
+
             </div>
         </article>
     );
